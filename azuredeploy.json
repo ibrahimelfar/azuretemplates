@@ -31,6 +31,13 @@
           "description": "Describes plan's instance count"
         }
       },
+      "sqlServerName": {
+          "type": "string",
+          "defaultValue": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
+          "metadata": {
+              "description": "The name of the SQL Server"
+          }
+      },
       "sqlAdministratorLogin": {
         "type": "string",
         "metadata": {
@@ -52,12 +59,11 @@
       }
     },
     "variables": {
-      "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
-      "sqlserverName": "[concat('sqlserver', uniqueString(resourceGroup().id))]"
+      "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]"
     },
     "resources": [
       {
-        "name": "[variables('sqlserverName')]",
+        "name": "[variables('sqlServerName')]",
         "type": "Microsoft.Sql/servers",
         "location": "[resourceGroup().location]",
         "tags": {
